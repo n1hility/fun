@@ -9,6 +9,6 @@ jobs:
     steps:
     - name: Test
       run: |
-        dmesg -w -T | egrep 'oom|kill' &
+        dmesg -w -T &
         tail /dev/zero || true
         echo end
