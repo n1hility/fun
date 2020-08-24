@@ -9,6 +9,6 @@ jobs:
     steps:
     - name: Test
       run: |
-        sudo dmesg -w -T | grep oom
+        sudo dmesg -w -T | grep oom &
         tail /dev/zero || true
         echo end
