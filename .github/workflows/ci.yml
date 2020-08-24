@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   other-job1:
-    name: Crazy  Job
+    name: Dmesg  Job
     runs-on: ubuntu-latest
     steps:
     - name: Test
