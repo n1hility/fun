@@ -9,6 +9,6 @@ jobs:
     steps:
     - name: Test
       run: |
-        sudo dmesg -w -T &
-        tail /dev/zero
+        sudo dmesg -W -T &
+        tail /dev/zero || true
         echo end
