@@ -9,8 +9,8 @@ jobs:
     steps:
     - name: Test
       run: |
-        dmesg -w -T | egrep -i "oom|kill" &
-        #tail /dev/zero || true
+        dmesg -w -T | egrep --line-buffered -i "oom|kill" &
+        tail /dev/zero || true
         sleep 1
         ps -ef
         echo end
