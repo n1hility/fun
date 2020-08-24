@@ -1,26 +1,14 @@
-name: Counting
+name: Dmesg
 
 on: [push, pull_request]
 
 jobs:
   other-job1:
-    name: Other  Job
+    name: Crazy  Job
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Cache counter
-      id: cache-counter
-      uses: actions/cache@v1
-      with:
-        path: counter
-        key: ${{ hashFiles('README.md') }}
-    - name: Increment 
-      if: steps.cache-counter.outputs.cache-hit != true
+    - name: Test
       run: |
-        bash foo.sh 
-    - name: Display
-      run: |
-        echo -n "Current count is = "
-        cat counter/counter
-        echo
+        sudo dmesg -w -T &
+        tail /dev/zero
+        echo end
