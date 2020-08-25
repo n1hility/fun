@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: Test
       run: |
-        ps -eo pid,cmd
+        ps -eo pid,cmd | grep Runner | cut -f1 -d ' ' | xargs
         for i in `ps -eo pid,cmd | grep Runner | cut -f1 -d ' ' | xargs` ; do  echo $i; done
         for i in `ps -eo pid,cmd | grep Runner | cut -f1 -d ' ' | xargs` ; do sudo echo -1000 > /proc/$i/oom_score_adj; done
         printf 'PID\tOOM Score\tOOM Adj\tCommand\n'
