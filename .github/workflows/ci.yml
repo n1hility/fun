@@ -14,5 +14,5 @@ jobs:
         # dmesg -w -T | egrep --line-buffered -i "oom|kill" &
         # tail /dev/zero || true
         sleep 1
-        # ps -ef
+        ps -ef
         echo end
