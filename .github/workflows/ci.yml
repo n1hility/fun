@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: Test
       run: |
-        for i in `ps -eo pid,cmd | grep Runner | awk '{print $1}' | xargs` ; do sudo echo -1000 > /proc/$i/oom_score_adj; done
+        for i in `ps -eo pid,cmd | grep Runner | awk '{print $1}' | xargs` ; do sudo echo -1000 > /proc/$i/oom_score_adj || true; done
         printf 'PID\tOOM Score\tOOM Adj\tCommand\n'
         while read -r pid comm; do [ -f /proc/$pid/oom_score ] && [ $(cat /proc/$pid/oom_score) != 0 ] && printf '%d\t%d\t\t%d\t%s\n' "$pid" "$(cat /proc/$pid/oom_score)" "$(cat /proc/$pid/oom_score_adj)" "$comm"; done < <(ps -e -o pid= -o comm=) | sort -k 2nr
         # dmesg -w -T | egrep --line-buffered -i "oom|kill" &
